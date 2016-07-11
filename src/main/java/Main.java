@@ -44,11 +44,12 @@ class SplitByPeriodTransformer implements InputTransformer<String, String> {
     }
 }
 
-class CombineTransformer implements OutputTransformer<String, Integer> {
+class CountLargerThanOneTransformer implements OutputTransformer<String, Integer> {
     @Override
     public String transform(List<KeyValuePair<String, Integer>> pairs) {
         return pairs.stream()
             .sorted(comparing(KeyValuePair<String, Integer>::getValue).reversed())
+            .filter(v -> v.getValue() > 1)
             .collect(
                 Collectors.mapping(
                     pair -> pair.getKey() + ": " + pair.getValue(),
@@ -64,7 +65,7 @@ public class Main {
         jobBuilder.setMapper(() -> new TokenizerMapper());
         jobBuilder.setReducer(() -> new IntSumReducer());
         jobBuilder.setInputTransformer(new SplitByPeriodTransformer());
-        jobBuilder.setOutputTransformer(new CombineTransformer());
+        jobBuilder.setOutputTransformer(new CountLargerThanOneTransformer());
         jobBuilder.setInput(text);
         jobBuilder.run();
 

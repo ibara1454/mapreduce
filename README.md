@@ -2,12 +2,14 @@
 
 ## Input
 テスト入力データこちらから取ってきました http://research.google.com/archive/mapreduce.html
+
 ``
 MapReduce is a programming model and an associated implementation for processing and generating large data sets. Users specify a map function that processes a key/value pair to generate a set of intermediate key/value pairs, and a reduce function that merges all intermediate values associated with the same intermediate key. Many real world tasks are expressible in this model, as shown in the paper. Programs written in this functional style are automatically parallelized and executed on a large cluster of commodity machines. The run-time system takes care of the details of partitioning the input data, scheduling the program's execution across a set of machines, handling machine failures, and managing the required inter-machine communication. This allows programmers without any experience with parallel and distributed systems to easily utilize the resources of a large distributed system. Our implementation of MapReduce runs on a large cluster of commodity machines and is highly scalable: a typical MapReduce computation processes many terabytes of data on thousands of machines. Programmers find the system easy to use: hundreds of MapReduce programs have been implemented and upwards of one thousand MapReduce jobs are executed on Google's clusters every day.
 ``
 
 ## Output
-``
+
+```
 of: 12
 a: 10
 the: 9
@@ -40,83 +42,4 @@ key/value: 2
 processes: 2
 implementation: 2
 with: 2
-been: 1
-without: 1
-required: 1
-easily: 1
-hundreds: 1
-tasks: 1
-reduce: 1
-specify: 1
-run-time: 1
-thousands: 1
-easy: 1
-an: 1
-input: 1
-as: 1
-utilize: 1
-processing: 1
-style: 1
-care: 1
-functional: 1
-automatically: 1
-our: 1
-across: 1
-world: 1
-same: 1
-systems: 1
-have: 1
-takes: 1
-map: 1
-key: 1
-failures: 1
-sets: 1
-jobs: 1
-one: 1
-computation: 1
-machine: 1
-runs: 1
-thousand: 1
-scalable: 1
-use: 1
-terabytes: 1
-parallelized: 1
-experience: 1
-pairs: 1
-google's: 1
-shown: 1
-find: 1
-implemented: 1
-scheduling: 1
-details: 1
-written: 1
-communication: 1
-day: 1
-generate: 1
-programming: 1
-all: 1
-real: 1
-upwards: 1
-users: 1
-expressible: 1
-inter-machine: 1
-managing: 1
-values: 1
-for: 1
-generating: 1
-paper: 1
-parallel: 1
-every: 1
-clusters: 1
-highly: 1
-allows: 1
-execution: 1
-resources: 1
-any: 1
-pair: 1
-program's: 1
-typical: 1
-partitioning: 1
-handling: 1
-merges: 1
-``
+```
