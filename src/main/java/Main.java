@@ -5,14 +5,19 @@ import java.util.stream.*;
 import mapreduce.*;
 import mapreduce.util.*;
 import mapreduce.job.*;
+import static java.util.Comparator.*;
 
 class TokenizerMapper extends Mapper<String, String, String, Integer> {
+    private static String delimiter = " ,:";
     @Override
     public List<KeyValuePair<String, Integer>> map(String key, String value) {
-        StringTokenizer tokenizer = new StringTokenizer(value);
+        StringTokenizer tokenizer = new StringTokenizer(value, delimiter);
         List<KeyValuePair<String, Integer>> list = new ArrayList<>();
         while(tokenizer.hasMoreTokens()) {
-            list.add(new KeyValuePair<>(tokenizer.nextToken(), 1));
+            String word = tokenizer.nextToken().toLowerCase();
+            if(word.length() > 0) {
+                list.add(new KeyValuePair<>(word.toLowerCase(), 1));
+            }
         }
         return list;
     }
@@ -35,9 +40,7 @@ class SplitByPeriodTransformer implements InputTransformer<String, String> {
             .collect(
                 Collectors.mapping(
                     part -> new KeyValuePair<>("", part),
-                    Collectors.toList()
-                )
-            );
+                    Collectors.toList()));
     }
 }
 
@@ -45,12 +48,11 @@ class CombineTransformer implements OutputTransformer<String, Integer> {
     @Override
     public String transform(List<KeyValuePair<String, Integer>> pairs) {
         return pairs.stream()
+            .sorted(comparing(KeyValuePair<String, Integer>::getValue).reversed())
             .collect(
                 Collectors.mapping(
                     pair -> pair.getKey() + ": " + pair.getValue(),
-                    Collectors.joining("\n")
-                )
-            );
+                    Collectors.joining("\n")));
     }
 }
 
